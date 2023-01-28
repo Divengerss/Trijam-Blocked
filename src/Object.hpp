@@ -7,8 +7,9 @@ namespace bmt
     class Object
     {
     public:
-        Object(sf::Texture texture, float x, float y);
-        Object(std::string name, float x, float y);
+        Object();
+        Object(sf::Texture texture, sf::Vector2f position);
+        Object(std::string name, sf::Vector2f position);
         ~Object();
 
     protected:

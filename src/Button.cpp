@@ -1,23 +1,21 @@
 #include "Button.hpp"
 
-bmt::Button::Button(const std::string textureIdle, const std::string texturePressed)
+bmt::Button::Button() {};
+
+bmt::Button::Button(const std::string texture, sf::Vector2f position)
 {
-    _textureIdle.loadFromFile(textureIdle);
-    _texturePressed.loadFromFile(texturePressed);
-    _textureIdle.setSmooth(true);
-    _texturePressed.setSmooth(true);
-    _spriteIdle.setTexture(_textureIdle);
-    _spritePressed.setTexture(_texturePressed);
+    _position = position;
+    _texture.loadFromFile(texture);
+    _texture.setSmooth(true);
+    _sprite.setTexture(_texture);
 }
 
-bmt::Button::Button(sf::Texture textureIdle, sf::Texture texturePressed)
+bmt::Button::Button(sf::Texture texture, sf::Vector2f position)
 {
-    _textureIdle = textureIdle;
-    _texturePressed = texturePressed;
-    _textureIdle.setSmooth(true);
-    _texturePressed.setSmooth(true);
-    _spriteIdle.setTexture(_textureIdle);
-    _spritePressed.setTexture(_texturePressed);
+    _position = position;
+    _texture = texture;
+    _texture.setSmooth(true);
+    _sprite.setTexture(_texture);
 }
 
 bmt::Button::~Button()
