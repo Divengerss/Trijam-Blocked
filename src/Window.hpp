@@ -18,7 +18,7 @@ namespace bmt
         Windows(const std::string &title, const std::size_t &x, const std::size_t &y);
         Windows(const std::string &title, const std::tuple<std::size_t, std::size_t> &size);
         Windows() = default;
-        ~Windows() = default;
+        ~Windows();
 
         void setTitle(const std::string &title);
         void setSize(const std::size_t &x, const std::size_t &y);
