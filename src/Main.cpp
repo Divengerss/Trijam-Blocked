@@ -1,17 +1,17 @@
-#include <SFML/Graphics.hpp>
+#include "Window.hpp"
 
 int main(int argc, const char *argv[])
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "BlockMeThat");
+    bmt::Windows gameWin("BlockMeThat", 800, 600);
 
-    while (window.isOpen()) {
+    while (gameWin.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (gameWin.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
-                window.close();
+                gameWin.close();
         }
-        window.clear();
-        window.display();
+        gameWin.clear();
+        gameWin.display();
     }
     return 0;
 }

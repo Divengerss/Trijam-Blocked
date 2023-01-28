@@ -1,4 +1,5 @@
 SRC		=	src/Main.cpp			\
+			src/Window.cpp			\
 
 NAME		=	BlockMeThat			\
 
