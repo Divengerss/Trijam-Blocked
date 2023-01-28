@@ -4,11 +4,13 @@ NAME		=	BlockMeThat			\
 
 OBJ     	=	$(SRC:.cpp=.o)
 
-CC		?=	gcc
+CC		?=	g++
 
 RM		=	rm -f
 
-CFLAGS		=	-Wall -Wextra -I./includes -I../includes
+CFLAGS		=	-Wall -Wextra -I./includes
+
+CXXFLAGS	=	-std=c++2a
 
 all:		$(NAME)
 
@@ -16,7 +18,7 @@ debug:		CFLAGS += -g3
 debug:		re
 
 $(NAME):	$(OBJ)
-	@$(CC) -o $(NAME) $(OBJ)
+	@$(CC) -o $(NAME) $(OBJ)  -lpthread -lsfml-graphics -lsfml-window -lsfml-system -lstdc++
 
 clean:
 	@find -name "*.gcda" -delete
