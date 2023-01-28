@@ -8,7 +8,7 @@
 #include <string>
 #include <tuple>
 
-#include <SFML/Graphics.hpp>
+#include "Event.hpp"
 
 namespace bmt
 {
@@ -24,8 +24,9 @@ namespace bmt
 
         std::string &getTitle();
         std::tuple<std::size_t, std::size_t> &getSize();
+        Event &getEvent();
 
-        bool pollEvent(sf::Event &event);
+        bool pollEvent();
         bool isOpen();
         void close();
         void clear();
@@ -34,6 +35,7 @@ namespace bmt
         sf::RenderWindow _win;
         std::string _title;
         std::tuple<std::size_t, std::size_t> _size;
+        Event _event;
     };
 }
 

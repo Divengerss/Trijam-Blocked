@@ -1,5 +1,6 @@
 SRC		=	src/Main.cpp			\
 			src/Window.cpp			\
+			src/Event.cpp			\
 
 NAME		=	BlockMeThat			\
 

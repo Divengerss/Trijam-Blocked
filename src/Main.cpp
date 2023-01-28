@@ -6,8 +6,8 @@ int main(int argc, const char *argv[])
 
     while (gameWin.isOpen()) {
         sf::Event event;
-        while (gameWin.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+        while (gameWin.pollEvent()) {
+            if (gameWin.getEvent().getType() == sf::Event::Closed)
                 gameWin.close();
         }
         gameWin.clear();
