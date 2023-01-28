@@ -9,6 +9,7 @@
 #define GAME_HPP_
 
 #include <vector>
+#include <memory>
 #include "Window.hpp"
 #include "Person.hpp"
 
@@ -19,6 +20,7 @@ namespace bmt
     {
     public:
         Game(const std::string &title, const std::size_t &x, const std::size_t &y);
+        void gameloop();
         ~Game();
 
         bmt::Windows _windows;

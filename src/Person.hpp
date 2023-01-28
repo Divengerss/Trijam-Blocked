@@ -20,8 +20,6 @@ namespace bmt
         Person(sf::Vector2f position);
         ~Person();
 
-    protected:
-    private:
         bmt::Object _icon;
         bmt::Button _block;
         bmt::Button _add;
@@ -29,6 +27,8 @@ namespace bmt
         sf::Text _name;
         sf::Font _font;
         bool _bot;
+    protected:
+    private:
     };
 }
 
