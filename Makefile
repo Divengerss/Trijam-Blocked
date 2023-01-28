@@ -1,6 +1,10 @@
 SRC		=	src/Main.cpp			\
 			src/Window.cpp			\
 			src/Event.cpp			\
+			src/Button.cpp			\
+			src/Object.cpp			\
+			src/Person.cpp			\
+			src/Text.cpp			\
 
 NAME		=	BlockMeThat			\
 
