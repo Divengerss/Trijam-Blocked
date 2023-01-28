@@ -1,17 +1,18 @@
-#include "Window.hpp"
+#include "Game.hpp"
 
 int main(int argc, const char *argv[])
 {
-    bmt::Windows gameWin("BlockMeThat", 800, 600);
 
-    while (gameWin.isOpen()) {
+    bmt::Game game("BlockMeThat", 800, 600);
+
+    while (game._windows.isOpen()) {
         sf::Event event;
-        while (gameWin.pollEvent()) {
-            if (gameWin.getEvent().getType() == sf::Event::Closed)
-                gameWin.close();
+        while (game._windows.pollEvent()) {
+            if (game._windows.getEvent().getType() == sf::Event::Closed)
+                game._windows.close();
         }
-        gameWin.clear();
-        gameWin.display();
+        game._windows.clear();
+        game._windows.display();
     }
     return 0;
 }

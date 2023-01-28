@@ -14,18 +14,6 @@
 
 namespace bmt
 {
-    std::list<std::string> iconFiles{
-        "ppico1.png",
-        "ppico2.png",
-        "ppico3.png",
-        "ppico4.png",
-        "ppico5.png",
-        "ppico6.png",
-        "ppico7.png",
-        "ppico8.png",
-        "ppico9.png",
-        "ppico10.png"};
-
     class Person
     {
     public:
