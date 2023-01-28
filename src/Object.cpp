@@ -7,7 +7,7 @@
 
 #include "Object.hpp"
 
-Object::Object(sf::Texture texture, float x, float y)
+bmt::Object::Object(sf::Texture texture, float x, float y)
 {
     _texture = texture;
     _texture.setSmooth(true);
@@ -16,7 +16,7 @@ Object::Object(sf::Texture texture, float x, float y)
     _position.y = y;
     _sprite.setPosition(_position);
 }
-Object::Object(std::string name, float x, float y)
+bmt::Object::Object(std::string name, float x, float y)
 {
     _texture.loadFromFile(name);
     _texture.setSmooth(true);
@@ -26,6 +26,6 @@ Object::Object(std::string name, float x, float y)
     _sprite.setPosition(_position);
 }
 
-Object::~Object()
+bmt::Object::~Object()
 {
 }

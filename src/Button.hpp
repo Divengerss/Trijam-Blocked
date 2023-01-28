@@ -3,7 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
-class Button {
+namespace bmt
+{
+    class Button
+    {
     public:
         Button(const std::string textureIdle, const std::string texturePressed);
         Button(sf::Texture textureIdle, sf::Texture texturePressed);
@@ -13,8 +16,9 @@ class Button {
         sf::Texture _texturePressed;
         sf::Sprite _spriteIdle;
         sf::Texture _textureIdle;
+
     protected:
     private:
-};
-
+    };
+}
 #endif /* !BUTTON_HPP_ */
