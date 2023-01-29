@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include <cstdlib>
+#include <iostream>
 
 int main(int argc, const char *argv[])
 {
@@ -14,7 +15,7 @@ int main(int argc, const char *argv[])
                     "You play as a young person, you have just reached\n"
                     "high school yesterday, and you are already famous!\n"
                     "You only have one thing in mind, impress Jean-Yves,\n"
-                    "your crush, so he notices you quicky!\n"
+                    "your crush, so he notices you quickly!\n"
                     "Have.. fun I hope!",
                     30, {30, 30});
     bmt::Text start("Press enter to continue", 30, {230, 540});
@@ -24,6 +25,10 @@ int main(int argc, const char *argv[])
     bmt::Text restartLoose("Press enter to restart", 30, {240, 290}, bmt::GAMEOVER);
     game.getWindow().setNewText(loose);
     game.getWindow().setNewText(restartLoose);
+    bmt::Text score("0", 30, {690, 90}, bmt::GAME);
+    game.getWindow().setNewText(score);
+    bmt::Text scoreTitle("SCORE", 30, {655, 40}, bmt::GAME);
+    game.getWindow().setNewText(scoreTitle);
     while (game._windows.isOpen()) {
         sf::Event event;
         while (game._windows.pollEvent())
@@ -58,10 +63,19 @@ int main(int argc, const char *argv[])
                     {
                         game._persons[i]._block._clicked = true;
                         game._persons[i]._checked = true;
-                        if (game._persons[i].isBot() == false)
+                        if (game._persons[i].isBot() == false) {
                             game.getSoundWrong().getSound().play();
-                        else
+                            if (game._windows.getScore() >= 13) {
+                                game._windows.getScore() -= 13;
+                                game._windows._texts[4].setText(std::to_string(game._windows.getScore()));
+                                game._windows._texts[4].getText().setString(std::to_string(game._windows.getScore()));
+                            }
+                        } else {
                             game.getSoundGood().getSound().play();
+                            game._windows.getScore() += 13;
+                            game._windows._texts[4].setText(std::to_string(game._windows.getScore()));
+                            game._windows._texts[4].getText().setString(std::to_string(game._windows.getScore()));
+                        }
                     }
                     if (mousePosition.x > game._persons[i]._add._sprite.getGlobalBounds().left &&
                         mousePosition.x < game._persons[i]._add._sprite.getGlobalBounds().left + game._persons[i]._add._sprite.getGlobalBounds().width &&
@@ -71,10 +85,19 @@ int main(int argc, const char *argv[])
                     {
                         game._persons[i]._add._clicked = true;
                         game._persons[i]._checked = true;
-                        if (game._persons[i].isBot() == true)
+                        if (game._persons[i].isBot() == true) {
                             game.getSoundWrong().getSound().play();
-                        else
+                            if (game._windows.getScore() >= 13) {
+                                game._windows.getScore() -= 13;
+                                game._windows._texts[4].setText(std::to_string(game._windows.getScore()));
+                                game._windows._texts[4].getText().setString(std::to_string(game._windows.getScore()));
+                            }
+                        } else {
                             game.getSoundGood().getSound().play();
+                            game._windows.getScore() += 13;
+                            game._windows._texts[4].setText(std::to_string(game._windows.getScore()));
+                            game._windows._texts[4].getText().setString(std::to_string(game._windows.getScore()));
+                        }
 
                     }
                 }
