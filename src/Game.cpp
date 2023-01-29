@@ -6,6 +6,7 @@
 */
 
 #include "Game.hpp"
+#include <cmath>
 
 bmt::Game::Game(const std::string &title, const std::size_t &x, const std::size_t &y) : _windows(title, x, y), _gameStatus(INTRO),
     _soundStart(bmt::Audio("./assets/start.wav", 70, false)), _soundGood(bmt::Audio("./assets/good.wav", 70, false)),
@@ -23,6 +24,13 @@ bmt::Game::~Game()
 }
 
 void bmt::Game::gameloop() {
+    sf::Text text;
+    sf::Font font;
+    font.loadFromFile("assets/font.ttf");
+    text.setFont(font);
+    text.setPosition(680, 400);
+    float timeLeft = 7;
+    int currentLevel = 0;
     if (_framerate.getElapsedTime() > sf::seconds(1/60))
     {
         _framerate.restart();
@@ -33,6 +41,13 @@ void bmt::Game::gameloop() {
                 _windows._win.draw(_persons[i]._add._sprite);
                 _windows._win.draw(_persons[i]._block._sprite);
             }
+            timeLeft -= _timer.getElapsedTime().asSeconds();
+            text.setString(std::to_string(timeLeft).erase(3, 6));
+            _windows._win.draw(text);
+            if (std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;}))
+                timeLeft = 7 - currentLevel * 0.5;
+            if (timeLeft < 0 && !(std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;})))
+                return;
         }
         _windows.drawTexts(_gameStatus);
     }

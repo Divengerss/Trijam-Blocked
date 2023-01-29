@@ -22,6 +22,7 @@ bmt::Person::Person(sf::Vector2f position)
     _bot = rand() % 2 == 0 ? true : false;
     _block._sprite.setScale(0.1, 0.1);
     _add._sprite.setScale(0.1, 0.1);
+    _checked = false;
 }
 
 bmt::Person::~Person()
