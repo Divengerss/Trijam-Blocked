@@ -6,6 +6,7 @@ SRC		=	src/Main.cpp			\
 			src/Button.cpp			\
 			src/Object.cpp			\
 			src/Text.cpp			\
+			src/Audio.cpp			\
 
 NAME		=	BlockMeThat			\
 
@@ -25,7 +26,7 @@ debug:		CFLAGS += -g3
 debug:		re
 
 $(NAME):	$(OBJ)
-	@$(CC) -o $(NAME) $(OBJ)  -lpthread -lsfml-graphics -lsfml-window -lsfml-system -lstdc++
+	@$(CC) -o $(NAME) $(OBJ)  -lpthread -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lstdc++
 
 clean:
 	@find -name "*.gcda" -delete

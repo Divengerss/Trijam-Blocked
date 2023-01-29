@@ -60,6 +60,7 @@ int main(int argc, const char *argv[])
                     game._windows.close();
                 if (game._windows.getEvent().getCode() == sf::Keyboard::Enter)
                     game.setStatus(bmt::GAME);
+                    game.playStart();
             }
         }
         game._windows.clear();
