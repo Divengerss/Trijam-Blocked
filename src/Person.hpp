@@ -20,6 +20,8 @@ namespace bmt
         Person(sf::Vector2f position);
         ~Person();
 
+        bool isBot();
+
         bmt::Object _icon;
         bmt::Button _block;
         bmt::Button _add;

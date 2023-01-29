@@ -27,6 +27,7 @@ namespace bmt
         Windows &getWindow();
         gameStatus getStatus();
         void setStatus(gameStatus status);
+        bmt::Person &getPersonAt(std::size_t i);
 
         Windows _windows;
         std::vector<bmt::Person> _persons;

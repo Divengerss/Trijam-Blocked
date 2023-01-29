@@ -44,6 +44,12 @@ int main(int argc, const char *argv[])
     game.getWindow().setNewText(name8);
     game.getWindow().setNewText(name9);
     game.getWindow().setNewText(name10);
+    for (std::size_t i = 0; i < 10; ++i) {
+        if (game.getPersonAt(i)._bot) {
+            game._windows._texts[i + 2].setText("bot" + std::to_string(rand() % 10000));
+            game._windows._texts[i + 2].getText().setString("bot" + std::to_string(rand() % 10000));
+        }
+    }
     while (game._windows.isOpen()) {
         sf::Event event;
         while (game._windows.pollEvent()) {

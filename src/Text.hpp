@@ -32,6 +32,8 @@ namespace bmt
         sf::Text &getText();
         gameStatus &getStatus();
 
+        void setText(const std::string &txt);
+
     private:
         sf::Text _txt;
         sf::Font _font;
