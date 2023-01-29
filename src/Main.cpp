@@ -49,9 +49,9 @@ int main(int argc, const char *argv[])
                         game._persons[i]._block._clicked = true;
                         game._persons[i]._checked = true;
                         if (game._persons[i].isBot() == false)
-                            continue;
+                            game.getSoundWrong().getSound().play();
                         else
-                            continue;
+                            game.getSoundGood().getSound().play();
                     }
                     if (mousePosition.x > game._persons[i]._add._sprite.getGlobalBounds().left &&
                         mousePosition.x < game._persons[i]._add._sprite.getGlobalBounds().left + game._persons[i]._add._sprite.getGlobalBounds().width &&
@@ -62,9 +62,10 @@ int main(int argc, const char *argv[])
                         game._persons[i]._add._clicked = true;
                         game._persons[i]._checked = true;
                         if (game._persons[i].isBot() == true)
-                            continue;
+                            game.getSoundWrong().getSound().play();
                         else
-                            continue;
+                            game.getSoundGood().getSound().play();
+
                     }
                 }
             }
