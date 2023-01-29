@@ -15,6 +15,10 @@
 
 namespace bmt
 {
+    enum gameStatus {
+        INTRO,
+        GAME
+    };
 
     class Game
     {
@@ -24,6 +28,8 @@ namespace bmt
         ~Game();
 
         Windows &getWindow();
+        gameStatus getStatus();
+        void setStatus(gameStatus status);
 
         Windows _windows;
         std::vector<bmt::Person> _persons;
@@ -33,6 +39,7 @@ namespace bmt
         sf::Sprite _spriteBackground;
     protected:
     private:
+        gameStatus _gameStatus;
     };
 }
 #endif /* !GAME_HPP_ */

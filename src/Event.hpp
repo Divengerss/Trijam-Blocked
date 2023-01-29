@@ -15,6 +15,7 @@ namespace bmt
         ~Event() = default;
 
         sf::Event::EventType &getType();
+        sf::Keyboard::Key &getCode();
         sf::Event &getEvent();
 
     private:

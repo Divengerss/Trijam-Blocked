@@ -14,3 +14,8 @@ sf::Event::EventType &bmt::Event::getType()
 {
     return (_event.type);
 }
+
+sf::Keyboard::Key &bmt::Event::getCode()
+{
+    return (_event.key.code);
+}

@@ -7,7 +7,7 @@ int main(int argc, const char *argv[])
     bmt::Game game("BlockMeThat", 800, 600);
     game._framerate.restart();
     bmt::Text intro("Hello and welcome to BlockMeThat, your goal is to\n"
-                    "access and decline friend invites on your favorite\n"
+                    "accept or decline friend invites on your favorite\n"
                     "social media! Watch out tho, some people really\n"
                     "want to be your friend but others are just bots\n"
                     "trying to send you unexpected stuff!\n"
@@ -25,10 +25,15 @@ int main(int argc, const char *argv[])
         while (game._windows.pollEvent()) {
             if (game._windows.getEvent().getType() == sf::Event::Closed)
                 game._windows.close();
+            if (game._windows.getEvent().getType() == sf::Event::KeyPressed) {
+                if (game._windows.getEvent().getCode() == sf::Keyboard::Escape)
+                    game._windows.close();
+                if (game._windows.getEvent().getCode() == sf::Keyboard::Enter)
+                    game.setStatus(bmt::GAME);
+            }
         }
         game._windows.clear();
         game.gameloop();
-        game._windows.drawTexts();
         game._windows.display();
     }
     return 0;
