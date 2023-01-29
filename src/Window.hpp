@@ -17,6 +17,7 @@ namespace bmt
     public:
         Windows(const std::string &title, const std::size_t &x, const std::size_t &y);
         Windows(const std::string &title, const std::tuple<std::size_t, std::size_t> &size);
+        Windows() = default;
         ~Windows();
 
         void setTitle(const std::string &title);
@@ -37,12 +38,12 @@ namespace bmt
         void display();
 
         void drawTexts();
-    private:
         sf::RenderWindow _win;
         std::string _title;
         std::tuple<std::size_t, std::size_t> _size;
         Event _event;
         std::vector<Text> _texts;
+    private:
     };
 }
 

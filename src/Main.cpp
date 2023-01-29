@@ -1,8 +1,11 @@
-#include "Window.hpp"
+#include "Game.hpp"
+#include <cstdlib>
 
 int main(int argc, const char *argv[])
 {
-    bmt::Windows gameWin("BlockMeThat", 800, 600);
+    srand(time(NULL));
+    bmt::Game game("BlockMeThat", 800, 600);
+    game._framerate.restart();
     bmt::Text intro("Hello and welcome to BlockMeThat, your goal is to\n"
                     "access and decline friend invites on your favorite\n"
                     "social media! Watch out tho, some people really\n"
@@ -14,18 +17,19 @@ int main(int argc, const char *argv[])
                     "your crush, so he notices you quicky!\n"
                     "Have.. fun I hope!", 30, {30, 30});
     bmt::Text start("Press enter to continue", 30, {230, 540});
-    gameWin.setNewText(intro);
-    gameWin.setNewText(start);
+    game.getWindow().setNewText(intro);
+    game.getWindow().setNewText(start);
 
-    while (gameWin.isOpen()) {
+    while (game._windows.isOpen()) {
         sf::Event event;
-        while (gameWin.pollEvent()) {
-            if (gameWin.getEvent().getType() == sf::Event::Closed)
-                gameWin.close();
+        while (game._windows.pollEvent()) {
+            if (game._windows.getEvent().getType() == sf::Event::Closed)
+                game._windows.close();
         }
-        gameWin.clear();
-        gameWin.drawTexts();
-        gameWin.display();
+        game._windows.clear();
+        game.gameloop();
+        game._windows.drawTexts();
+        game._windows.display();
     }
     return 0;
 }
