@@ -23,11 +23,7 @@ namespace bmt
         void setSize(const std::size_t &x, const std::size_t &y);
         void setSize(const std::tuple<std::size_t, std::size_t> &size);
 
-        void setNewText(const std::string &str);
-        void setNewText(const std::string &str, const std::size_t &charSize);
-        void setNewText(const std::string &str, const std::size_t &charSize, const sf::Color &col);
-        void setNewText(const std::string &str, const std::size_t &charSize, const sf::Color &col, const std::string &fontPath);
-        void setNewText(const std::string &str, const std::size_t &charSize, const std::string &fontPath);
+        void setNewText(const Text &txt);
 
         std::string &getTitle();
         std::tuple<std::size_t, std::size_t> &getSize();
