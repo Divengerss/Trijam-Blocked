@@ -32,6 +32,7 @@ namespace bmt
 
         sf::Text &getText();
         gameStatus &getStatus();
+        std::string &getString();
 
         void setText(const std::string &txt);
         sf::Color _col;

@@ -145,3 +145,8 @@ void bmt::Text::setText(const std::string &txt)
 {
     _str = txt;
 }
+
+std::string &bmt::Text::getString()
+{
+    return (_str);
+}

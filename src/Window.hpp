@@ -30,6 +30,7 @@ namespace bmt
         std::tuple<std::size_t, std::size_t> &getSize();
         Event &getEvent();
         sf::RenderWindow &getWindow();
+        int &getScore();
 
         bool pollEvent();
         bool isOpen();
@@ -43,6 +44,7 @@ namespace bmt
         std::tuple<std::size_t, std::size_t> _size;
         Event _event;
         std::vector<Text> _texts;
+        int _score;
     private:
     };
 }

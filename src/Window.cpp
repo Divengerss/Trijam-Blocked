@@ -2,7 +2,7 @@
 
 bmt::Windows::Windows(const std::string &title, const std::size_t &x, const std::size_t &y) :
     _win(sf::RenderWindow(sf::VideoMode(x, y), title)),
-    _event(Event())
+    _event(Event()), _score(0)
 {
     setTitle(title);
     setSize(x, y);
@@ -10,7 +10,7 @@ bmt::Windows::Windows(const std::string &title, const std::size_t &x, const std:
 
 bmt::Windows::Windows(const std::string &title, const std::tuple<std::size_t, std::size_t> &size) :
     _win(sf::RenderWindow(sf::VideoMode(std::get<0>(size), std::get<1>(size)), title)),
-    _event(Event())
+    _event(Event()), _score(0)
 {
     setTitle(title);
     setSize(size);
@@ -93,4 +93,9 @@ void bmt::Windows::drawTexts(const bmt::gameStatus &status)
 sf::RenderWindow &bmt::Windows::getWindow()
 {
     return (_win);
+}
+
+int &bmt::Windows::getScore()
+{
+    return (_score);
 }
