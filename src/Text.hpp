@@ -34,13 +34,13 @@ namespace bmt
         gameStatus &getStatus();
 
         void setText(const std::string &txt);
+        sf::Color _col;
 
     private:
         sf::Text _txt;
         sf::Font _font;
         std::string _str;
         std::size_t _charSize;
-        sf::Color _col;
         sf::Vector2f _pos;
         gameStatus _status;
     };

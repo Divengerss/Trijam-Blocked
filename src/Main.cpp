@@ -57,11 +57,17 @@ int main(int argc, const char *argv[])
                         game._persons[i]._checked == false)
                     {
                         game._persons[i]._block._clicked = true;
+                        game._persons[i]._block._sprite.setColor(sf::Color::Transparent);
+                        game._persons[i]._add._sprite.setColor(sf::Color::Transparent);
                         game._persons[i]._checked = true;
-                        if (game._persons[i].isBot() == false)
+                        if (game._persons[i].isBot() == false) {
+                            game._persons[i]._name->getText().setFillColor(sf::Color::Red);
                             game.getSoundWrong().getSound().play();
-                        else
+                        }
+                        else {
+                            game._persons[i]._name->getText().setFillColor(sf::Color::Green);
                             game.getSoundGood().getSound().play();
+                        }
                     }
                     if (mousePosition.x > game._persons[i]._add._sprite.getGlobalBounds().left &&
                         mousePosition.x < game._persons[i]._add._sprite.getGlobalBounds().left + game._persons[i]._add._sprite.getGlobalBounds().width &&
@@ -70,11 +76,17 @@ int main(int argc, const char *argv[])
                         game._persons[i]._checked == false)
                     {
                         game._persons[i]._add._clicked = true;
+                        game._persons[i]._block._sprite.setColor(sf::Color::Transparent);
+                        game._persons[i]._add._sprite.setColor(sf::Color::Transparent);
                         game._persons[i]._checked = true;
-                        if (game._persons[i].isBot() == true)
+                        if (game._persons[i].isBot() == true) {
+                            game._persons[i]._name->getText().setFillColor(sf::Color::Red);
                             game.getSoundWrong().getSound().play();
-                        else
+                        }
+                        else {
+                            game._persons[i]._name->getText().setFillColor(sf::Color::Green);
                             game.getSoundGood().getSound().play();
+                        }
 
                     }
                 }
