@@ -13,10 +13,10 @@
 #include "Window.hpp"
 #include "Person.hpp"
 #include "Text.hpp"
+#include "Audio.hpp"
 
 namespace bmt
 {
-
     class Game
     {
     public:
@@ -27,7 +27,14 @@ namespace bmt
         Windows &getWindow();
         gameStatus getStatus();
         void setStatus(gameStatus status);
-        bmt::Person &getPersonAt(std::size_t i);
+        Person &getPersonAt(std::size_t i);
+        Audio &getSoundStart();
+        Audio &getSoundGood();
+        Audio &getSoundWrong();
+
+        void playStart();
+        void playGood();
+        void playWrong();
 
         Windows _windows;
         std::vector<bmt::Person> _persons;
@@ -38,6 +45,9 @@ namespace bmt
     protected:
     private:
         gameStatus _gameStatus;
+        Audio _soundStart;
+        Audio _soundGood;
+        Audio _soundWrong;
     };
 }
 #endif /* !GAME_HPP_ */
