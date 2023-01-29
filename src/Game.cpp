@@ -7,6 +7,8 @@
 
 #include "Game.hpp"
 #include <cmath>
+#include <iostream>
+#include <string>
 
 bmt::Game::Game(const std::string &title, const std::size_t &x, const std::size_t &y) : _windows(title, x, y), _gameStatus(INTRO),
     _soundStart(bmt::Audio("./assets/start.wav", 70, false)), _soundGood(bmt::Audio("./assets/good.wav", 70, false)),
@@ -38,16 +40,22 @@ void bmt::Game::gameloop() {
                 _windows._win.draw(_persons[i]._block._sprite);
                 _windows._win.draw(_persons[i]._name->getText());
             }
-            _timerText.setString(std::to_string(_timeLeft - _timer.getElapsedTime().asSeconds()).erase(3,6));
+            std::string toPrint = std::to_string(_timeLeft - _timer.getElapsedTime().asSeconds());
+            toPrint.resize(toPrint.size() - 5);
+            _timerText.setString(toPrint);
             _windows._win.draw(_timerText);
             if (std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;})) {
                 _currentLevel += 1;
-                _timeLeft = 7 - (_currentLevel * 0.5);
+                _timeLeft = 15 - (_currentLevel * 0.5);
                 _timer.restart();
+                _persons.clear();
+                for (int i = 0; i < 10; i++) {
+                    _persons.push_back(Person(sf::Vector2f(10, 3.5 + (i * 60))));
+                }
             }
-            if (_timeLeft - _timer.getElapsedTime().asSeconds() < 0 && !(std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;}))) {
+            else if (_timeLeft - _timer.getElapsedTime().asSeconds() < 0 && !(std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;}))) {
                 setStatus(GAMEOVER);
-                _timeLeft = 7;
+                _timeLeft = 15;
             }
         }
         _windows.drawTexts(_gameStatus);
