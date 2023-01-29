@@ -140,3 +140,8 @@ sf::Text &bmt::Text::getText()
 {
     return (_txt);
 }
+
+void bmt::Text::setText(const std::string &txt)
+{
+    _str = txt;
+}

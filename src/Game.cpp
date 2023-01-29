@@ -50,3 +50,8 @@ void bmt::Game::setStatus(bmt::gameStatus status)
 {
     _gameStatus = status;
 }
+
+bmt::Person &bmt::Game::getPersonAt(std::size_t i)
+{
+    return (_persons[i]);
+}

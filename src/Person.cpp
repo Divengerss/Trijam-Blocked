@@ -27,3 +27,8 @@ bmt::Person::Person(sf::Vector2f position)
 bmt::Person::~Person()
 {
 }
+
+bool bmt::Person::isBot()
+{
+    return (_bot);
+}
