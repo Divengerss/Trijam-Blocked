@@ -32,3 +32,8 @@ void bmt::Game::gameloop() {
         }
     }
 }
+
+bmt::Windows &bmt::Game::getWindow()
+{
+    return (_windows);
+}

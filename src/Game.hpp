@@ -23,7 +23,9 @@ namespace bmt
         void gameloop();
         ~Game();
 
-        bmt::Windows _windows;
+        Windows &getWindow();
+
+        Windows _windows;
         std::vector<bmt::Person> _persons;
         sf::Clock _timer;
         sf::Clock _framerate;

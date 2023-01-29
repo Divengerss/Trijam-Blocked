@@ -1,14 +1,24 @@
 #include "Game.hpp"
 #include <cstdlib>
+
 int main(int argc, const char *argv[])
 {
     srand(time(NULL));
     bmt::Game game("BlockMeThat", 800, 600);
     game._framerate.restart();
-    sf::Font font;
-    if (!font.loadFromFile("./assets/font.ttf"))
-        return EXIT_FAILURE;
-    sf::Text text("Hello SFML", font, 50);
+    bmt::Text intro("Hello and welcome to BlockMeThat, your goal is to\n"
+                    "access and decline friend invites on your favorite\n"
+                    "social media! Watch out tho, some people really\n"
+                    "want to be your friend but others are just bots\n"
+                    "trying to send you unexpected stuff!\n"
+                    "You play as a young person, you have just reached\n"
+                    "high school yesterday, and you are already famous!\n"
+                    "You only have one thing in mind, impress Jean-Yves,\n"
+                    "your crush, so he notices you quicky!\n"
+                    "Have.. fun I hope!", 30, {30, 30});
+    bmt::Text start("Press enter to continue", 30, {230, 540});
+    game.getWindow().setNewText(intro);
+    game.getWindow().setNewText(start);
 
     while (game._windows.isOpen()) {
         sf::Event event;
@@ -18,7 +28,7 @@ int main(int argc, const char *argv[])
         }
         game._windows.clear();
         game.gameloop();
-        game._windows.getWindow().draw(text);
+        game._windows.drawTexts();
         game._windows.display();
     }
     return 0;
