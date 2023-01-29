@@ -23,7 +23,7 @@ bmt::Person::Person(sf::Vector2f position)
     _name = new bmt::Text((names[rand() % names.size()] + std::to_string(rand() % 10000)), 30, {70, _position.y + 9.5}, bmt::GAME);
     _bot = rand() % 2 == 0 ? true : false;
     if (_bot == true) {
-        _name->getText().setString("bot" + std::to_string(rand() % 10000));
+        _name->getText().setString("Bot" + std::to_string(rand() % 10000));
     }
     _block._sprite.setScale(0.1, 0.1);
     _add._sprite.setScale(0.1, 0.1);

@@ -75,7 +75,9 @@ int main(int argc, const char *argv[])
                             game.getSoundWrong().getSound().play();
                             if (game._windows.getScore() >= 13)
                             {
-                                game._windows.getScore() -= 13;
+                                game._windows.getScore() -= 27;
+                                if (game._windows.getScore() < 0)
+                                    game._windows.getScore() = 0;
                                 game._windows._texts[4].setText(std::to_string(game._windows.getScore()));
                                 game._windows._texts[4].getText().setString(std::to_string(game._windows.getScore()));
                             }
@@ -105,7 +107,9 @@ int main(int argc, const char *argv[])
                             game.getSoundWrong().getSound().play();
                             if (game._windows.getScore() >= 13)
                             {
-                                game._windows.getScore() -= 13;
+                                game._windows.getScore() -= 27;
+                                if (game._windows.getScore() < 0)
+                                    game._windows.getScore() = 0;
                                 game._windows._texts[4].setText(std::to_string(game._windows.getScore()));
                                 game._windows._texts[4].getText().setString(std::to_string(game._windows.getScore()));
                             }
