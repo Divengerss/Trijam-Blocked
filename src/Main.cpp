@@ -13,7 +13,9 @@ int main(int argc, const char *argv[])
                     "You only have one thing in mind, impress Jean-Yves,\n"
                     "your crush, so he notices you quicky!\n"
                     "Have.. fun I hope!", 30, {30, 30});
+    bmt::Text start("Press enter to continue", 30, {230, 540});
     gameWin.setNewText(intro);
+    gameWin.setNewText(start);
 
     while (gameWin.isOpen()) {
         sf::Event event;
