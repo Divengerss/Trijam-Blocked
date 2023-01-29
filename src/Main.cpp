@@ -40,6 +40,7 @@ int main(int argc, const char *argv[])
                         game.setStatus(bmt::GAME);
                     }
                     if (game.getStatus() == bmt::GAMEOVER) {
+                        game._timer.restart();
                         game.setStatus(bmt::GAME);
                     }
                 }
