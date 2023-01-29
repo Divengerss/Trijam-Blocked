@@ -41,7 +41,12 @@ void bmt::Game::gameloop() {
                 _windows._win.draw(_persons[i]._add._sprite);
                 _windows._win.draw(_persons[i]._block._sprite);
             }
-            timeLeft -= _timer.getElapsedTime().asSeconds();
+            if (timeLeft > 0)
+                timeLeft -= _timer.getElapsedTime().asSeconds();
+            if (timeLeft <= 0) {
+                setStatus(GAMEOVER);
+                timeLeft = 7;
+            }
             text.setString(std::to_string(timeLeft).erase(3, 6));
             _windows._win.draw(text);
             if (std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;}))

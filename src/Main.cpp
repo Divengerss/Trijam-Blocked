@@ -50,6 +50,10 @@ int main(int argc, const char *argv[])
             game._windows._texts[i + 2].getText().setString("bot" + std::to_string(rand() % 10000));
         }
     }
+    bmt::Text loose("Mission failed! Jean-Yves doesn't like you", 30, {100, 200}, bmt::GAMEOVER);
+    bmt::Text restartLoose("Press enter to restart", 30, {240, 290}, bmt::GAMEOVER);
+    game.getWindow().setNewText(loose);
+    game.getWindow().setNewText(restartLoose);
     while (game._windows.isOpen()) {
         sf::Event event;
         while (game._windows.pollEvent()) {
@@ -58,9 +62,15 @@ int main(int argc, const char *argv[])
             if (game._windows.getEvent().getType() == sf::Event::KeyPressed) {
                 if (game._windows.getEvent().getCode() == sf::Keyboard::Escape)
                     game._windows.close();
-                if (game._windows.getEvent().getCode() == sf::Keyboard::Enter)
-                    game.setStatus(bmt::GAME);
-                    game.playStart();
+                if (game._windows.getEvent().getCode() == sf::Keyboard::Enter) {
+                    if (game.getStatus() == bmt::INTRO) {
+                        game.playStart();
+                        game.setStatus(bmt::GAME);
+                    }
+                    if (game.getStatus() == bmt::GAMEOVER) {
+                        game.setStatus(bmt::GAME);
+                    }
+                }
             }
         }
         game._windows.clear();

@@ -11,7 +11,8 @@ namespace bmt
 {
     enum gameStatus {
         INTRO,
-        GAME
+        GAME,
+        GAMEOVER
     };
 
     class Text
