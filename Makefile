@@ -25,7 +25,7 @@ debug:		CFLAGS += -g3
 debug:		re
 
 $(NAME):	$(OBJ)
-	@$(CC) -o $(NAME) $(OBJ)  -lpthread -lsfml-graphics -lsfml-window -lsfml-system -lstdc++
+	@$(CC) -o $(NAME) $(OBJ)  -lpthread -lsfml-graphics -lsfml-window -lsfml-system -lstdc++ -lm
 
 clean:
 	@find -name "*.gcda" -delete

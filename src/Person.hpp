@@ -27,6 +27,7 @@ namespace bmt
         sf::Text _name;
         sf::Font _font;
         bool _bot;
+        bool _checked;
     protected:
     private:
     };
