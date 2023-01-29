@@ -17,6 +17,9 @@ bmt::Game::Game(const std::string &title, const std::size_t &x, const std::size_
     }
     _textureBackground.loadFromFile("assets/background.png");
     _spriteBackground.setTexture(_textureBackground);
+    _timerFont.loadFromFile("assets/font.ttf");
+    _timerText.setFont(_timerFont);
+    _timerText.setPosition(680, 400);
 }
 
 bmt::Game::~Game()
@@ -24,13 +27,6 @@ bmt::Game::~Game()
 }
 
 void bmt::Game::gameloop() {
-    sf::Text text;
-    sf::Font font;
-    font.loadFromFile("assets/font.ttf");
-    text.setFont(font);
-    text.setPosition(680, 400);
-    float timeLeft = 7;
-    int currentLevel = 0;
     if (_framerate.getElapsedTime() > sf::seconds(1/60))
     {
         _framerate.restart();
@@ -40,19 +36,19 @@ void bmt::Game::gameloop() {
                 _windows._win.draw(_persons[i]._icon._sprite);
                 _windows._win.draw(_persons[i]._add._sprite);
                 _windows._win.draw(_persons[i]._block._sprite);
+                _windows._win.draw(_persons[i]._name->getText());
             }
-            if (timeLeft > 0)
-                timeLeft -= _timer.getElapsedTime().asSeconds();
-            if (timeLeft <= 0) {
+            _timerText.setString(std::to_string(_timeLeft - _timer.getElapsedTime().asSeconds()).erase(3,6));
+            _windows._win.draw(_timerText);
+            if (std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;})) {
+                _currentLevel += 1;
+                _timeLeft = 7 - (_currentLevel * 0.5);
+                _timer.restart();
+            }
+            if (_timeLeft - _timer.getElapsedTime().asSeconds() < 0 && !(std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;}))) {
                 setStatus(GAMEOVER);
-                timeLeft = 7;
+                _timeLeft = 7;
             }
-            text.setString(std::to_string(timeLeft).erase(3, 6));
-            _windows._win.draw(text);
-            if (std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;}))
-                timeLeft = 7 - currentLevel * 0.5;
-            if (timeLeft < 0 && !(std::all_of(_persons.begin(), _persons.end(), [](bmt::Person p){return p._checked == true;})))
-                return;
         }
         _windows.drawTexts(_gameStatus);
     }

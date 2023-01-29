@@ -42,6 +42,10 @@ namespace bmt
         sf::Clock _framerate;
         sf::Texture _textureBackground;
         sf::Sprite _spriteBackground;
+        float _timeLeft = 7;
+        int _currentLevel = 0;
+        sf::Text _timerText;
+        sf::Font _timerFont;
     protected:
     private:
         gameStatus _gameStatus;

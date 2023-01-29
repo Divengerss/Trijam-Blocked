@@ -15,51 +15,23 @@ int main(int argc, const char *argv[])
                     "high school yesterday, and you are already famous!\n"
                     "You only have one thing in mind, impress Jean-Yves,\n"
                     "your crush, so he notices you quicky!\n"
-                    "Have.. fun I hope!", 30, {30, 30});
+                    "Have.. fun I hope!",
+                    30, {30, 30});
     bmt::Text start("Press enter to continue", 30, {230, 540});
     game.getWindow().setNewText(intro);
     game.getWindow().setNewText(start);
-    const std::vector<std::string> names = {"Paul", "Alexander", "Theo", "Alexa", "Frank", "Bob", "Clara",
-                                            "Antonio", "Fred", "John", "Max", "Ulysse", "Julian", "Julien",
-                                            "Enzo", "Maxime", "Daniel", "Theodor", "Anna", "Alice", "Manon",
-                                            "Emily", "Victor", "Marius", "Claude", "Claire", "Clemence"};
-    std::size_t namesSize = names.size();
-    bmt::Text name1(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 13}, bmt::GAME);
-    bmt::Text name2(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 73}, bmt::GAME);
-    bmt::Text name3(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 133}, bmt::GAME);
-    bmt::Text name4(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 193}, bmt::GAME);
-    bmt::Text name5(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 253}, bmt::GAME);
-    bmt::Text name6(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 313}, bmt::GAME);
-    bmt::Text name7(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 373}, bmt::GAME);
-    bmt::Text name8(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 433}, bmt::GAME);
-    bmt::Text name9(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 493}, bmt::GAME);
-    bmt::Text name10(names[rand() % namesSize] + std::to_string(rand() % 10000), 30, {70, 553}, bmt::GAME);
-    game.getWindow().setNewText(name1);
-    game.getWindow().setNewText(name2);
-    game.getWindow().setNewText(name3);
-    game.getWindow().setNewText(name4);
-    game.getWindow().setNewText(name5);
-    game.getWindow().setNewText(name6);
-    game.getWindow().setNewText(name7);
-    game.getWindow().setNewText(name8);
-    game.getWindow().setNewText(name9);
-    game.getWindow().setNewText(name10);
-    for (std::size_t i = 0; i < 10; ++i) {
-        if (game.getPersonAt(i)._bot) {
-            game._windows._texts[i + 2].setText("bot" + std::to_string(rand() % 10000));
-            game._windows._texts[i + 2].getText().setString("bot" + std::to_string(rand() % 10000));
-        }
-    }
     bmt::Text loose("Mission failed! Jean-Yves doesn't like you", 30, {100, 200}, bmt::GAMEOVER);
     bmt::Text restartLoose("Press enter to restart", 30, {240, 290}, bmt::GAMEOVER);
     game.getWindow().setNewText(loose);
     game.getWindow().setNewText(restartLoose);
     while (game._windows.isOpen()) {
         sf::Event event;
-        while (game._windows.pollEvent()) {
+        while (game._windows.pollEvent())
+        {
             if (game._windows.getEvent().getType() == sf::Event::Closed)
                 game._windows.close();
-            if (game._windows.getEvent().getType() == sf::Event::KeyPressed) {
+            if (game._windows.getEvent().getType() == sf::Event::KeyPressed)
+            {
                 if (game._windows.getEvent().getCode() == sf::Keyboard::Escape)
                     game._windows.close();
                 if (game._windows.getEvent().getCode() == sf::Keyboard::Enter) {
@@ -69,6 +41,40 @@ int main(int argc, const char *argv[])
                     }
                     if (game.getStatus() == bmt::GAMEOVER) {
                         game.setStatus(bmt::GAME);
+                    }
+                }
+            }
+            if (game._windows._event.getEvent().mouseButton.button == sf::Mouse::Left)
+            {
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(game._windows._win);
+                for (int i = 0; i < game._persons.size(); i++)
+                {
+                    if (mousePosition.x > game._persons[i]._block._sprite.getGlobalBounds().left &&
+                        mousePosition.x < game._persons[i]._block._sprite.getGlobalBounds().left + game._persons[i]._block._sprite.getGlobalBounds().width &&
+                        mousePosition.y > game._persons[i]._block._sprite.getGlobalBounds().top &&
+                        mousePosition.y < game._persons[i]._block._sprite.getGlobalBounds().top + game._persons[i]._block._sprite.getGlobalBounds().height &&
+                        game._persons[i]._checked == false)
+                    {
+                        game._persons[i]._block._clicked = true;
+                        game._persons[i]._checked = true;
+                        if (game._persons[i].isBot() == false)
+                            game.getSoundWrong().getSound().play();
+                        else
+                            game.getSoundGood().getSound().play();
+                    }
+                    if (mousePosition.x > game._persons[i]._add._sprite.getGlobalBounds().left &&
+                        mousePosition.x < game._persons[i]._add._sprite.getGlobalBounds().left + game._persons[i]._add._sprite.getGlobalBounds().width &&
+                        mousePosition.y > game._persons[i]._add._sprite.getGlobalBounds().top &&
+                        mousePosition.y < game._persons[i]._add._sprite.getGlobalBounds().top + game._persons[i]._add._sprite.getGlobalBounds().height &&
+                        game._persons[i]._checked == false)
+                    {
+                        game._persons[i]._add._clicked = true;
+                        game._persons[i]._checked = true;
+                        if (game._persons[i].isBot() == true)
+                            game.getSoundWrong().getSound().play();
+                        else
+                            game.getSoundGood().getSound().play();
+
                     }
                 }
             }
