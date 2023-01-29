@@ -1,6 +1,6 @@
 #include "Text.hpp"
 
-bmt::Text::Text()
+bmt::Text::Text() : _status(INTRO)
 {
     _charSize = 30UL;
     _col = sf::Color(255, 255, 255, 255);
@@ -14,7 +14,7 @@ bmt::Text::Text()
     _txt.setString(_str);
 }
 
-bmt::Text::Text(const std::string &str)
+bmt::Text::Text(const std::string &str) : _status(INTRO)
 {
     _charSize = 30UL;
     _str = str;
@@ -28,7 +28,7 @@ bmt::Text::Text(const std::string &str)
     _txt.setString(_str);
 }
 
-bmt::Text::Text(const std::string &str, const std::size_t &charSize)
+bmt::Text::Text(const std::string &str, const std::size_t &charSize) : _status(INTRO)
 {
     _charSize = charSize;
     _str = str;
@@ -42,7 +42,7 @@ bmt::Text::Text(const std::string &str, const std::size_t &charSize)
     _txt.setString(_str);
 }
 
-bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col)
+bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col) : _status(INTRO)
 {
     _charSize = charSize;
     _str = str;
@@ -56,7 +56,7 @@ bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::C
     _txt.setString(_str);
 }
 
-bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const std::string &fontPath)
+bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const std::string &fontPath) : _status(INTRO)
 {
     _charSize = charSize;
     _str = str;
@@ -70,7 +70,7 @@ bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::C
     _txt.setString(_str);
 }
 
-bmt::Text::Text(const std::string &str, const sf::Vector2f &pos)
+bmt::Text::Text(const std::string &str, const sf::Vector2f &pos) : _status(INTRO)
 {
     _charSize = 30UL;
     _str = str;
@@ -85,7 +85,7 @@ bmt::Text::Text(const std::string &str, const sf::Vector2f &pos)
     _txt.setPosition(pos);
 }
 
-bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Vector2f &pos)
+bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Vector2f &pos) : _status(INTRO)
 {
     _charSize = charSize;
     _str = str;
@@ -100,7 +100,7 @@ bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::V
     _txt.setPosition(pos);
 }
 
-bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const sf::Vector2f &pos)
+bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const sf::Vector2f &pos) : _status(INTRO)
 {
     _charSize = charSize;
     _str = str;
@@ -115,12 +115,13 @@ bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::C
     _txt.setPosition(pos);
 }
 
-bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const std::string &fontPath, const sf::Vector2f &pos)
+bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::Vector2f &pos, gameStatus status)
 {
     _charSize = charSize;
     _str = str;
-    _col = col;
-    if (!_font.loadFromFile(fontPath))
+    _status = status;
+    _col = sf::Color(255, 255, 255, 255);
+    if (!_font.loadFromFile("./assets/font.ttf"))
         throw std::runtime_error("Failed to load font file.");
     _txt = sf::Text(_str, _font);
     _txt.setCharacterSize(_charSize);
@@ -128,6 +129,11 @@ bmt::Text::Text(const std::string &str, const std::size_t &charSize, const sf::C
     _txt.setFont(_font);
     _txt.setString(_str);
     _txt.setPosition(pos);
+}
+
+bmt::gameStatus &bmt::Text::getStatus()
+{
+    return (_status);
 }
 
 sf::Text &bmt::Text::getText()

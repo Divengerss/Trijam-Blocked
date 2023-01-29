@@ -31,8 +31,8 @@ void bmt::Game::gameloop() {
                 _windows._win.draw(_persons[i]._add._sprite);
                 _windows._win.draw(_persons[i]._block._sprite);
             }
-        } else if (_gameStatus == INTRO)
-            _windows.drawTexts();
+        }
+        _windows.drawTexts(_gameStatus);
     }
 }
 

@@ -12,13 +12,10 @@
 #include <memory>
 #include "Window.hpp"
 #include "Person.hpp"
+#include "Text.hpp"
 
 namespace bmt
 {
-    enum gameStatus {
-        INTRO,
-        GAME
-    };
 
     class Game
     {

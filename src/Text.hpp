@@ -9,6 +9,11 @@
 
 namespace bmt
 {
+    enum gameStatus {
+        INTRO,
+        GAME
+    };
+
     class Text
     {
     public:
@@ -21,9 +26,11 @@ namespace bmt
         Text(const std::string &str, const std::size_t &charSize, const sf::Vector2f &pos);
         Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const sf::Vector2f &pos);
         Text(const std::string &str, const std::size_t &charSize, const sf::Color &col, const std::string &fontPath, const sf::Vector2f &pos);
+        Text(const std::string &str, const std::size_t &charSize, const sf::Vector2f &pos, gameStatus status);
         ~Text() = default;
 
         sf::Text &getText();
+        gameStatus &getStatus();
 
     private:
         sf::Text _txt;
@@ -32,6 +39,7 @@ namespace bmt
         std::size_t _charSize;
         sf::Color _col;
         sf::Vector2f _pos;
+        gameStatus _status;
     };
 }
 

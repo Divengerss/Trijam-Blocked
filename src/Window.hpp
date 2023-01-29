@@ -37,7 +37,7 @@ namespace bmt
         void clear();
         void display();
 
-        void drawTexts();
+        void drawTexts(const bmt::gameStatus &status);
         sf::RenderWindow _win;
         std::string _title;
         std::tuple<std::size_t, std::size_t> _size;

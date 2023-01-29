@@ -81,11 +81,13 @@ void bmt::Windows::display()
     _win.display();
 }
 
-void bmt::Windows::drawTexts()
+void bmt::Windows::drawTexts(const bmt::gameStatus &status)
 {
     std::size_t textsLen = _texts.size();
-    for (std::size_t i = 0; i < textsLen; ++i)
-        _win.draw(_texts[i].getText());
+    for (std::size_t i = 0; i < textsLen; ++i) {
+        if (_texts[i].getStatus() == status)
+            _win.draw(_texts[i].getText());
+    }
 }
 
 sf::RenderWindow &bmt::Windows::getWindow()
