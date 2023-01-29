@@ -38,6 +38,7 @@ void bmt::Game::gameloop() {
                 _windows._win.draw(_persons[i]._icon._sprite);
                 _windows._win.draw(_persons[i]._add._sprite);
                 _windows._win.draw(_persons[i]._block._sprite);
+                _windows._win.draw(_persons[i]._name->getText());
             }
             timeLeft -= _timer.getElapsedTime().asSeconds();
             text.setString(std::to_string(timeLeft).erase(3, 6));

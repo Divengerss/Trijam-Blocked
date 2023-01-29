@@ -10,6 +10,7 @@
 
 #include "Object.hpp"
 #include "Button.hpp"
+#include "Text.hpp"
 #include <list>
 
 namespace bmt
@@ -26,7 +27,7 @@ namespace bmt
         bmt::Button _block;
         bmt::Button _add;
         sf::Vector2f _position;
-        sf::Text _name;
+        bmt::Text *_name;
         sf::Font _font;
         bool _bot;
         bool _checked;
