@@ -45,7 +45,7 @@ int main(int argc, const char *argv[])
                     }
                 }
             }
-            if (game._windows._event.getEvent().mouseButton.button == sf::Mouse::Left)
+            if (game._windows._event.getEvent().mouseButton.button == sf::Mouse::Left && game._windows.getEvent().getType() == sf::Event::MouseButtonPressed)
             {
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(game._windows._win);
                 for (int i = 0; i < game._persons.size(); i++)
